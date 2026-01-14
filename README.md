@@ -8,10 +8,6 @@
 
 This repository contains the official implementation of the paper *"Do Transformers Grok Succinct Algorithms? Mechanistic Evidence for Counting Circuits"* (ACL 2026).
 
-<p align="center">
-  <img src="figures/overview.png" width="800"/>
-</p>
-
 ## 📋 Abstract
 
 Recent theory suggests Transformers are inherently **succinct**, capable of representing recursive algorithms like binary counting over exponential state spaces using constant-size circuits, unlike the exponential bottleneck of RNNs. However, it remains unclear whether gradient descent actually discovers these efficient solutions or settles for heuristics.
