@@ -6,7 +6,7 @@
 [![PyTorch 2.0+](https://img.shields.io/badge/pytorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This repository contains the official implementation of the paper *"Do Transformers Grok Succinct Algorithms? Mechanistic Evidence for Counting Circuits"* [![ACL 2026](https://img.shields.io/badge/ACL%202026-Submission%20260-blue?style=for-the-badge)](https://2026.aclweb.org/)
+This repository contains the official implementation of the paper *"Do Transformers Grok Succinct Algorithms? Mechanistic Evidence for Counting Circuits"* [![ACL 2026](https://img.shields.io/badge/ACL%202026-Submission%20260-brightgreen.svg)](https://2026.aclweb.org/)
 
 ## 📋 Abstract
 
