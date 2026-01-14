@@ -157,7 +157,7 @@ The model exhibits classic grokking behavior:
 Layer 0, Head 2 exhibits precise `-(n+1)` diagonal attention—the "Same-Bit Lookup" mechanism:
 
 <p align="center">
-  <img src="figures/attention_pattern.png" width="500"/>
+  <img src="figures/Attention pattern.png" width="500"/>
 </p>
 
 ### Activation Patching
