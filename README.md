@@ -10,9 +10,7 @@ This repository contains the official implementation of the paper *"Do Transform
 
 ## 📋 Abstract
 
-Recent theory suggests Transformers are inherently **succinct**, capable of representing recursive algorithms like binary counting over exponential state spaces using constant-size circuits, unlike the exponential bottleneck of RNNs. However, it remains unclear whether gradient descent actually discovers these efficient solutions or settles for heuristics.
-
-We bridge this gap by rigorously testing the **Succinctness Hypothesis** via mechanistic interpretability on the **LARGECOUNTER** task. Key findings:
+Recent theory suggests Transformers are inherently **succinct**, capable of representing recursive algorithms like binary counting over exponential state spaces using constant-size circuits, unlike the exponential bottleneck of RNNs. However, it remains unclear whether gradient descent actually discovers these efficient solutions or settles for heuristics. We bridge this gap by rigorously testing the **Succinctness Hypothesis** via mechanistic interpretability on the **LARGECOUNTER** task. Key findings:
 
 - 🎯 **Empirical Validation**: Shallow Transformers (d=64) generalize perfectly, while massive LSTMs (d=2048) fail completely (<6% accuracy)
 - 🔄 **Grokking Discovery**: Succinct circuits emerge via a sharp phase transition driven by "complexity collapse"
@@ -153,7 +151,7 @@ The model exhibits classic grokking behavior:
 Layer 0, Head 2 exhibits precise `-(n+1)` diagonal attention—the "Same-Bit Lookup" mechanism:
 
 <p align="center">
-  <img src="figures/Attention pattern.png" width="500"/>
+  <img src="figures/attention_pattern.png" width="500"/>
 </p>
 
 ### Activation Patching
