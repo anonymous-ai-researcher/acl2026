@@ -1,0 +1,135 @@
+# Default configuration for LARGECOUNTER experiments
+# Paper: "Do Transformers Grok Succinct Algorithms?"
+
+# =============================================================================
+# Data Configuration
+# =============================================================================
+data:
+  n_bits: 20                    # Bit-width of counter (2^20 state space)
+  train_ratio: 0.3              # Fraction of state space for training
+  stratified_sampling: true     # Uniform distribution over carry chain lengths
+  delimiter: "#"                # Token separating numbers
+  vocab: ["0", "1", "#"]        # Vocabulary
+
+# =============================================================================
+# Transformer Model Configuration
+# =============================================================================
+transformer:
+  d_model: 64                   # Hidden dimension
+  n_layers: 2                   # Number of Transformer layers
+  n_heads: 4                    # Number of attention heads
+  d_ff: 256                     # Feedforward dimension (4x d_model)
+  dropout: 0.0                  # Dropout rate (disabled for grokking)
+  activation: "gelu"            # Activation function
+  norm_first: true              # Pre-LayerNorm architecture
+  
+  # Positional encoding
+  positional_encoding: "rope"   # Options: "rope", "sinusoidal", "learned"
+  rope_base: 10000              # RoPE base frequency
+  max_seq_len: 512              # Maximum sequence length
+  
+  # Weight initialization
+  init_std: 0.02                # Standard deviation for weight init
+
+# =============================================================================
+# RNN Baseline Configuration  
+# =============================================================================
+rnn:
+  model_type: "lstm"            # Options: "lstm", "gru"
+  hidden_dim: 2048              # Hidden dimension
+  n_layers: 2                   # Number of RNN layers
+  dropout: 0.0                  # Dropout rate
+  bidirectional: false          # Bidirectional RNN
+
+# =============================================================================
+# Training Configuration
+# =============================================================================
+training:
+  # Optimizer
+  optimizer: "adamw"
+  learning_rate: 1.0e-3
+  weight_decay: 1.0             # Critical for grokking (high value)
+  betas: [0.9, 0.98]
+  eps: 1.0e-8
+  
+  # Learning rate schedule
+  scheduler: "cosine"           # Options: "cosine", "linear", "constant"
+  warmup_steps: 1000
+  
+  # Training loop
+  max_steps: 50000              # Extended training for grokking
+  batch_size: 512
+  gradient_clip: 1.0
+  
+  # Logging
+  log_interval: 100
+  eval_interval: 500
+  save_interval: 5000
+  
+  # Early stopping (disabled by default for grokking experiments)
+  early_stopping: false
+  patience: 10000
+  
+  # Reproducibility
+  seed: 42
+  n_seeds: 5                    # Number of seeds for experiments
+
+# =============================================================================
+# Evaluation Configuration
+# =============================================================================
+evaluation:
+  # Stratified evaluation
+  stratified: true              # Evaluate per carry chain length
+  
+  # Metrics
+  metrics: ["accuracy", "loss"]
+  sequence_level: true          # Full sequence must match
+  
+  # Test set
+  test_ratio: 0.7               # 1 - train_ratio
+
+# =============================================================================
+# Analysis Configuration
+# =============================================================================
+analysis:
+  # Attention analysis
+  attention:
+    save_patterns: true
+    target_offset: -21          # -(n+1) for n=20
+    
+  # Activation patching
+  patching:
+    target_bit: 10              # Mid-sequence position
+    n_samples: 1000
+    
+  # Weight norm tracking
+  track_weight_norm: true
+  
+  # Visualization
+  visualization:
+    save_figures: true
+    figure_format: "png"
+    dpi: 300
+
+# =============================================================================
+# Logging and Checkpointing
+# =============================================================================
+logging:
+  use_wandb: true
+  wandb_project: "transformer-grokking"
+  wandb_entity: null            # Set to your entity
+  
+  use_tensorboard: true
+  tensorboard_dir: "outputs/tensorboard"
+  
+  log_dir: "outputs/logs"
+  checkpoint_dir: "outputs/checkpoints"
+
+# =============================================================================
+# Hardware Configuration
+# =============================================================================
+hardware:
+  device: "cuda"                # Options: "cuda", "cpu", "mps"
+  precision: "float32"          # Options: "float32", "float16", "bfloat16"
+  num_workers: 4                # DataLoader workers
+  pin_memory: true
