@@ -189,16 +189,6 @@ python scripts/train_transformer.py --n_layers 1 --n_heads 2  # Minimal
 python scripts/train_transformer.py --n_layers 4 --n_heads 8  # Larger
 ```
 
-## 📖 Citation
-
-```bibtex
-@inproceedings{anonymous2026grokking,
-  title={Do Transformers Grok Succinct Algorithms? Mechanistic Evidence for Counting Circuits},
-  author={Anonymous},
-  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics},
-  year={2026}
-}
-```
 
 ## 📜 License
 
